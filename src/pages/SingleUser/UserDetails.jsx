@@ -94,7 +94,7 @@ const UserDetails = () => {
                           </p>
                         </Accordion.Body>
                       </Accordion.Item>
-                      <Accordion.Item eventKey="1" className="border-0" style={{paddingLeft:"32%",paddingRight:"32%"}}>
+                      <Accordion.Item eventKey="1" className="border-0" style={{paddingLeft:"33%",paddingRight:"33%"}}>
                         <Accordion.Header> <b>Company</b></Accordion.Header>
                         <Accordion.Body>
                           <p>
