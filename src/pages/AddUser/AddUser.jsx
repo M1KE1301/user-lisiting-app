@@ -22,10 +22,17 @@ const AddUser = ({ show, handleClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (
+      !userData.name ||
+      !userData.username ||
+      !userData.email ||
+      !userData.phone ||
+      !userData.website
+    ) {
+      toast.error("Please fill in all fields.");
+      return;
+    }
     try {
-      // Send a POST request to create a new user
-      // Replace the URL with the actual API endpoint for user creation
-      // The user data is in the `userData` state
       await axiosOpen.post("/users", userData);
       toast.success("User added successfully");
       setUserData({
@@ -41,6 +48,15 @@ const AddUser = ({ show, handleClose }) => {
     }
   };
 
+  const handlePhoneInput = (e) => {
+    const { name, value } = e.target;
+    const sanitizedValue = value.replace(/[^0-9+]/g, "");
+    setUserData({
+      ...userData,
+      [name]: sanitizedValue,
+    });
+  };
+
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
@@ -51,7 +67,7 @@ const AddUser = ({ show, handleClose }) => {
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formName">
-              <Form.Label>Name</Form.Label>
+              <Form.Label className="fw-bold">Name</Form.Label>
               <Form.Control
                 type="text"
                 name="name"
@@ -61,7 +77,7 @@ const AddUser = ({ show, handleClose }) => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formUsername">
-              <Form.Label>Username</Form.Label>
+              <Form.Label className="fw-bold">Username</Form.Label>
               <Form.Control
                 type="text"
                 name="username"
@@ -71,7 +87,7 @@ const AddUser = ({ show, handleClose }) => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formEmail">
-              <Form.Label>Email</Form.Label>
+              <Form.Label className="fw-bold">Email</Form.Label>
               <Form.Control
                 type="email"
                 name="email"
@@ -81,17 +97,18 @@ const AddUser = ({ show, handleClose }) => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formPhone">
-              <Form.Label>Phone</Form.Label>
+              <Form.Label className="fw-bold">Phone</Form.Label>
               <Form.Control
-                type="text"
+                type="tel"
                 name="phone"
                 value={userData.phone}
-                onChange={handleInputChange}
+                onChange={handlePhoneInput}
+                
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formWebsite">
-              <Form.Label>Website</Form.Label>
+              <Form.Label className="fw-bold">Website</Form.Label>
               <Form.Control
                 type="text"
                 name="website"
@@ -99,10 +116,11 @@ const AddUser = ({ show, handleClose }) => {
                 onChange={handleInputChange}
               />
             </Form.Group>
-
+          <div className="d-flex justify-content-end">
             <Button variant="primary" type="submit">
               Add User
             </Button>
+          </div>
           </Form>
         </Modal.Body>
       </Modal>
