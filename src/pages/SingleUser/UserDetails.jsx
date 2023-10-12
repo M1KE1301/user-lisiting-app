@@ -77,7 +77,7 @@ const UserDetails = () => {
                     <p>
                       <b>Phone</b>: {userDetail.phone}
                     </p>
-                      <Accordion.Item eventKey="0" className="border-0 mb-4 px-5 mx-5">
+                      <Accordion.Item eventKey="0" className="border-0 mb-4" style={{paddingLeft:"20%",paddingRight:"20%"}}>
                         <Accordion.Header> <b>Address</b></Accordion.Header>
                         <Accordion.Body>
                           <p>
@@ -94,7 +94,7 @@ const UserDetails = () => {
                           </p>
                         </Accordion.Body>
                       </Accordion.Item>
-                      <Accordion.Item eventKey="1" className="border-0 px-5 mx-5">
+                      <Accordion.Item eventKey="1" className="border-0" style={{paddingLeft:"32%",paddingRight:"32%"}}>
                         <Accordion.Header> <b>Company</b></Accordion.Header>
                         <Accordion.Body>
                           <p>

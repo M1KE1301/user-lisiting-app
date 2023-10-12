@@ -38,6 +38,16 @@ const EditUser = ({ show, handleClose, userId }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (
+      !userData.name ||
+      !userData.username ||
+      !userData.email ||
+      !userData.phone ||
+      !userData.website
+    ) {
+      toast.error("Please fill in all fields.");
+      return;
+    }
     try {
       await axiosOpen.put(`/users/${userId}`, userData);
       toast.success("User details updated successfully");
